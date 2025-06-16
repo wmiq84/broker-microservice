@@ -7,6 +7,7 @@ import (
 )
 
 // port to listen on
+// in context of Docker, port that http binds to which is container's port
 const webPort = "80"
 
 type Config struct{}
