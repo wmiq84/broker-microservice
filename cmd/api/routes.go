@@ -31,5 +31,7 @@ func (app *Config) routes() http.Handler {
 	// on post request to /, calls broker method
 	mux.Post("/", app.Broker)
 
+	mux.Post("/handle", app.HandleSubmission)
+
 	return mux
 }
