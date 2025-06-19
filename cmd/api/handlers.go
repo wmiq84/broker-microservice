@@ -79,7 +79,7 @@ func (app *Config) HandleSubmission(w http.ResponseWriter, r *http.Request) {
 	// base case: unknown action
 	// assuming that the user will pass in auth to trigger case?
 	case "log":
-		app.logItem(w, requestPayload.Log)
+		app.logEventViaRabbit(w, requestPayload.Log)
 	case "mail":
 		app.sendMail(w, requestPayload.Mail)
 	default:
