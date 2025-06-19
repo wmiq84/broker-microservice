@@ -177,7 +177,7 @@ func (app *Config) sendMail(w http.ResponseWriter, msg MailPayload) {
 	jsonData, _ := json.MarshalIndent(msg, "", "\t")
 
 	// from Docker
-	request, err := http.NewRequest("POST", "http://authentication-service/authenticate", bytes.NewBuffer(jsonData))
+	request, err := http.NewRequest("POST", "http://mailer-service/send", bytes.NewBuffer(jsonData))
 	if err != nil {
 		app.errorJSON(w, err)
 		return
@@ -194,7 +194,7 @@ func (app *Config) sendMail(w http.ResponseWriter, msg MailPayload) {
 	defer response.Body.Close()
 
 	if response.StatusCode != http.StatusAccepted {
-		app.errorJSON(w, errors.New("error calling mail service!"))
+		app.errorJSON(w, errors.New("error calling mail service"))
 		return
 	}
 
